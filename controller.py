@@ -5,7 +5,7 @@ conn = psycopg2.connect(database='Acc', user='postgres', password='dio', host='l
 cur = conn.cursor()
 
 def login(username,password):
-     query = f"select * from pengguna where username = '{username}' and password = '{password}' "
+     query = f"select p.username,p.nama_pengguna,p.password,r.nama_role from pengguna p join role r on p.id_role = r.id_role where username = '{username}' and password = '{password}' "
      cur.execute(query)
      data = cur.fetchall()
      return data
