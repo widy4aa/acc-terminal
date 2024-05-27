@@ -127,10 +127,7 @@ def select_data_pelanggan(cur):
     from pelanggan p join alamat a 
     on a.id_alamat = p.id_alamat
     """
-    cur.execute(query)
-    data = cur.fetchall()
-    return data
-    
+
 # fitur pelanggan
 def input_data_alamat(cur,values_alamat):
     query_insert_alamat = f"""
@@ -157,6 +154,19 @@ def cari_id_alamat(cur):
     cur.execute(query)
     data = cur.fetchall()
     return data
+
+
+def read_pelanggan_selection(cur,id_pelanggan):
+    query =f"""
+    select id_pelanggan,nama_pelanggan,no_telp,jalan ||' '|| kecamatan ||' '|| kabupaten as alamat 
+    from pelanggan p join alamat a 
+    on a.id_alamat = p.id_alamat
+    where id_pelanggan = {id_pelanggan}
+    """
+    cur.execute(query)
+    data = cur.fetchall()
+    return data
+    
 
 
     

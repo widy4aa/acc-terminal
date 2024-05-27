@@ -1,5 +1,6 @@
 import controller as controller
 from tabulate import tabulate
+import main as main
 
 def menu_dashboard_input():
     menu = int(input("pilih berdasarkan nomor :"))
@@ -28,7 +29,7 @@ def searching_dashboard ():
 #menu pelanggan 
 def menu_pelanggan_input():
     menu = int(input("pilih berdasarkan nomor :"))
-    if 1 <= menu <=4 :
+    if 1 <= menu <=5 :
         return menu
     else : 
         menu_pelanggan_input()
@@ -55,12 +56,20 @@ def menu_pelangggan():
         controller.input_data_pelanggan(controller.cur,data_pelanggan)
         menu_pelangggan()
         
+    elif menu == 2 :
+        id_pelanggan = int(input("pilih id_pelanggan yang ingin di edit : "))
+        data = controller.read_selection_table(controller.cur,'pelanggan','id_pelanggan',id_pelanggan )
+        print(tabulate(data))
+        print ("ganti value nya atau tidak dengan mengabaikan")
+        nama_pelanggan = input((data[0][1]+' :')) or data[0][1]
+        no_telp = input(data[0][2]+' :') or data[0][2]
+        no_telp = input(data[0][3]+' :') or data[0][2]
     
         
-
-        
-
+    elif menu == 5 :
+        main.clear()
+        main.dashboard()
         
     
-    
-
+        
+menu_pelangggan()

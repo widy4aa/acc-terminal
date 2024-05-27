@@ -62,5 +62,6 @@ def dashboard ():
         clear()
         component.menu_pelangggan()
         
+        
 
 dashboard()
