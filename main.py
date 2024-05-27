@@ -3,6 +3,10 @@ import pandas
 import tabulate
 import datetime
 import controller as controller
+import component as component
+import os
+def clear ():
+    os.system('cls' if os.name == 'nt' else 'clear')
 
 #login 
 
@@ -25,24 +29,35 @@ while True:
     
 
 #dashboard
-print("-------------------------------")
-nama = status_login[0][1]
-status = status_login[0][3]
-print (f"sekarang tanggal {datetime.date.today()}")
-print (f"selamat datang {status} {nama}")
-transaksi_hari_ini = controller.read_jumlah_data(controller.cur,"transaksi")
-print (f"jumlah transaksi hari ini : {transaksi_hari_ini[0][0]}")
-print (f"jumlah uang masuk hari ini : {controller.read_jumlah_uang_masuk(controller.cur)}")
-print (f"produk dan atau layanan yang paling diminati hari ini : {controller.produk_layanan_diminati(controller.cur)}")
-pembayaran_hari_ini = controller.metode_pembayaran_diminati(controller.cur)
-print (f"jenis pembayaran paling diminati : {pembayaran_hari_ini[0][0]} ")
-print("-------------------------------")
+def dashboard ():
+    print("-------------------------------")
+    nama = status_login[0][1]
+    status = status_login[0][3]
+    print (f"sekarang tanggal {datetime.date.today()}")
+    print (f"selamat datang {status} {nama}")
+    transaksi_hari_ini = controller.read_jumlah_data(controller.cur,"transaksi")
+    print (f"jumlah transaksi hari ini : {transaksi_hari_ini[0][0]}")
+    print (f"jumlah uang masuk hari ini : {controller.read_jumlah_uang_masuk(controller.cur)}")
+    print (f"produk dan atau layanan yang paling diminati hari ini : {controller.produk_layanan_diminati(controller.cur)}")
+    pembayaran_hari_ini = controller.metode_pembayaran_diminati(controller.cur)
+    print (f"jenis pembayaran paling diminati : {pembayaran_hari_ini[0][0]} ")
+    print("-------------------------------")
 
-#menu
+    #menu
 
-print (f"""List Menu 
-1.Searching      3.Pemesanan         5.Data Produk       7.Data Layanan
-2.Data Pelanggan 4.Data Transaksi    6.Data Pengguna     8.Profile        
-       """)
+    print (f"""List Menu 
+    1.Searching      3.Pemesanan         5.Data Produk       7.Data Layanan
+    2.Data Pelanggan 4.Data Transaksi    6.Data Pengguna     8.Profile        
+           """)
+    inputan = component.menu_dashboard_input()
+    clear()
 
-menu = int(input("pilih berdasarkan nomor :"))
+    if inputan == 1 :
+        clear()
+        component.searching_dashboard()
+        jeda = input("tekan enter untuk kembali")
+        dashboard()
+        
+        
+
+dashboard()

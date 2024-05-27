@@ -76,9 +76,10 @@ def produk_layanan_diminati (cur):
         diminati = data1[0][0]
     elif jumlah_trx_produk < jumlah_trx_layanan :
         diminati = data2[0][0]
+    elif jumlah_trx_layanan == jumlah_trx_produk == 0 :
+        diminati = "Belum Ada"
     else  :
-        diminati = f"{data1[0][0]} dan {data2[0][0]}"
-    
+            diminati = f"{data1[0][0] or 0} dan {data2[0][0] or 0}"
     return diminati
 
 def metode_pembayaran_diminati(cur):
@@ -86,3 +87,38 @@ def metode_pembayaran_diminati(cur):
     cur.execute(query)
     data = cur.fetchall()
     return data
+
+def searching_pelanggan(cur,inputan):
+    query =f"""
+    select id_pelanggan,nama_pelanggan,jalan || kecamatan || kabupaten as alamat 
+    from pelanggan p join alamat a 
+    on a.id_alamat = p.id_alamat
+    where nama_pelanggan ilike '%{inputan}%';
+    """
+    cur.execute(query)
+    data = cur.fetchall()
+    return data
+
+def searching_produk (cur,inputan):
+    query =f"""
+    select id_produk,nama_produk,harga,j.nama_jenis_produk
+    from  produk p join jenis_produk j
+    on p.id_jenis_produk = j.id_jenis_produk  
+    where nama_produk ilike '%{inputan}%';
+    """
+    cur.execute(query)
+    data = cur.fetchall()
+    return data
+
+
+def searching (cur,inputan,table,kolom):
+    query =f"""
+    select * 
+    from {table} 
+    where {kolom} ilike '%{inputan}%';     
+    """ 
+    cur.execute(query)
+    data = cur.fetchall()
+    return data
+
+    
