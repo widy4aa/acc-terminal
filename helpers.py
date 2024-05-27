@@ -8,3 +8,8 @@ def clear():
         os.system('cls')
     else:
         print("Sistem operasi tidak didukung.")
+
+# adalah singkatan dari dump die, yang dimana merupakan fungsi untuk menampilkan isi variable dan mematikan 
+def dd(data):
+    print(data)
+    exit()
