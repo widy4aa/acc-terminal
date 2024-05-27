@@ -2,12 +2,7 @@ import controller as controller
 from tabulate import tabulate
 import main as main
 
-def menu_dashboard_input():
-    menu = int(input("pilih berdasarkan nomor :"))
-    if 1 <= menu <=8 :
-        return menu
-    else : 
-        menu_dashboard_input()
+
         
 #searching 
 def searching_dashboard (): 

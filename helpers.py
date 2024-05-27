@@ -1,4 +1,8 @@
 import os
+import psycopg2
+
+conn = psycopg2.connect(database='Acc', user='postgres', password='dio', host='localhost', port=5432)
+cur = conn.cursor()
 
 # fungsi untuk clear console untuk bisa berfungsi di 2 tipe Sistem operasi
 def clear():
@@ -13,3 +17,13 @@ def clear():
 def dd(data):
     print(data)
     exit()
+    
+def searching (cur,inputan,table,kolom):
+    query =f"""
+    select * 
+    from {table} 
+    where {kolom} ilike '%{inputan}%';     
+    """ 
+    cur.execute(query)
+    data = cur.fetchall()
+    return data

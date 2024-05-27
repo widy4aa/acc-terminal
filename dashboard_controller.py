@@ -1,38 +1,13 @@
 import psycopg2
 
-#ganti seusai database coi
 conn = psycopg2.connect(database='Acc', user='postgres', password='dio', host='localhost', port=5432)
 cur = conn.cursor()
-
-def login(username,password):
-     query = f"select p.username,p.nama_pengguna,p.password,r.nama_role from pengguna p join role r on p.id_role = r.id_role where username = '{username}' and password = '{password}' "
-     cur.execute(query)
-     data = cur.fetchall()
-     return data
-
-# print(login(user))
-
-def read_table(cur,table):
-    query = f"select * from {table}"
-    cur.execute(query)
-    data = cur.fetchall()
-    return data
-
-#print(read_table(cur,'pengguna'))
-
-
-def read_selection_table(cur,table,column,selection):
-    query =f"select * from {table} where {column}={selection}"
-    cur.execute(query)
-    data = cur.fetchall()
-    return data
 
 def read_jumlah_data(cur,table):
     query = f"SELECT count(*) FROM {table} WHERE DATE(tgl_dibuat) = DATE(NOW());"
     cur.execute(query)
     data = cur.fetchall()
     return data
-
 
 def read_jumlah_uang_masuk(cur):
     query1 = f"select sum(harga) from transaksi t join detail_transaksi_produk dt on dt.id_transaksi = t.id_transaksi join produk p on p.id_produk = dt.id_produk WHERE DATE(tgl_dibuat) = DATE(NOW());" 
@@ -88,6 +63,13 @@ def metode_pembayaran_diminati(cur):
     data = cur.fetchall()
     return data
 
+def menu_dashboard_input():
+    menu = int(input("pilih berdasarkan nomor :"))
+    if 1 <= menu <=8 :
+        return menu
+    else : 
+        menu_dashboard_input()
+        
 def searching_pelanggan(cur,inputan):
     query =f"""
     select id_pelanggan,nama_pelanggan,jalan || kecamatan || kabupaten as alamat 
@@ -110,63 +92,3 @@ def searching_produk (cur,inputan):
     data = cur.fetchall()
     return data
 
-
-def searching (cur,inputan,table,kolom):
-    query =f"""
-    select * 
-    from {table} 
-    where {kolom} ilike '%{inputan}%';     
-    """ 
-    cur.execute(query)
-    data = cur.fetchall()
-    return data
-
-def select_data_pelanggan(cur):
-    query =f"""
-    select id_pelanggan,nama_pelanggan,no_telp,jalan ||' '|| kecamatan ||' '|| kabupaten as alamat 
-    from pelanggan p join alamat a 
-    on a.id_alamat = p.id_alamat
-    """
-
-# fitur pelanggan
-def input_data_alamat(cur,values_alamat):
-    query_insert_alamat = f"""
-    insert into alamat (id_alamat,jalan, kecamatan, kabupaten)
-    values ({values_alamat[0]},'{values_alamat[1]}','{values_alamat[2]}','{values_alamat[3]}')
-    """
-    cur.execute(query_insert_alamat)
-    conn.commit()
-    
-  
-def input_data_pelanggan(cur,values_pelanggan):
-    query_insert_pelanggan = f""" 
-    insert into pelanggan (nama_pelanggan, no_telp, id_alamat)
-    values  ('{values_pelanggan[0]}','{values_pelanggan[1]}',{values_pelanggan[2]})
-    """  
-    cur.execute(query_insert_pelanggan)
-    conn.commit()
-    
-def cari_id_alamat(cur):
-    query = f"""
-        select id_alamat from alamat order by id_alamat desc 
-        limit 1 ;
-    """
-    cur.execute(query)
-    data = cur.fetchall()
-    return data
-
-
-def read_pelanggan_selection(cur,id_pelanggan):
-    query =f"""
-    select id_pelanggan,nama_pelanggan,no_telp,jalan ||' '|| kecamatan ||' '|| kabupaten as alamat 
-    from pelanggan p join alamat a 
-    on a.id_alamat = p.id_alamat
-    where id_pelanggan = {id_pelanggan}
-    """
-    cur.execute(query)
-    data = cur.fetchall()
-    return data
-    
-
-
-    

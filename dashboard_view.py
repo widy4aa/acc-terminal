@@ -1,8 +1,29 @@
 import datetime
 import dashboard_controller as controller
+import helpers as helper
+from tabulate import tabulate
 
+dump = [('Almashuda34', 'Huda', 'huda34678', 'owner')]
 
 #dashboard
+
+def searching_dashboard (status_login): 
+    inputan = input("cari :")
+    data_pelanggan=controller.searching_pelanggan(controller.cur,inputan)
+    data_produk=controller.searching_produk(controller.cur,inputan)
+    data_layanan=helper.searching(controller.cur,inputan,"layanan","nama_layanan")
+    print("\n")
+    print("dari pelanggan")
+    print(tabulate(data_pelanggan,headers=['id_pelanggan','nama_pelanggan','alamat']))
+    print("\n")
+    print("dari layanan")
+    print(tabulate(data_layanan,headers=['id_layanan','nama_layanan','harga']))
+    print("\n")
+    print("dari produk")
+    print(tabulate(data_produk,headers=['id_layanan','nama_produk','harga','jenis']))
+    jeda = input("tekan enter untuk kembali")
+    dashboard(status_login)
+
 def dashboard (status_login):
     print("-------------------------------")
     nama = status_login[0][1]
@@ -23,16 +44,14 @@ def dashboard (status_login):
     1.Searching      3.Pemesanan         5.Data Produk       7.Data Layanan
     2.Data Pelanggan 4.Data Transaksi    6.Data Pengguna     8.Profile        
            """)
-    inputan = 1
-    controller.clear()
+    inputan = controller.menu_dashboard_input()
+    helper.clear()
 
     if inputan == 1 :
-        controller.clear()
-
-        jeda = input("tekan enter untuk kembali")
-        dashboard()
+        helper.clear()
+        searching_dashboard(status_login)
         
     elif inputan == 2 :
-        controller.clear()
+        helper.clear()
       
-dashboard([('Almashuda34', 'Huda', 'huda34678', 'owner')])
+dashboard(dump)
