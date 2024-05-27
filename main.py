@@ -58,6 +58,9 @@ def dashboard ():
         jeda = input("tekan enter untuk kembali")
         dashboard()
         
+    elif inputan == 2 :
+        clear()
+        component.menu_pelangggan()
         
 
 dashboard()
