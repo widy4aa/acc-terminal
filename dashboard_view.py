@@ -3,7 +3,7 @@ import dashboard_controller as controller
 import helpers as helper
 from tabulate import tabulate
 
-dump = [('Almashuda34', 'Huda', 'huda34678', 'owner')]
+#dump = [('Almashuda34', 'Huda', 'huda34678', 'owner')]
 
 #dashboard
 
@@ -22,6 +22,7 @@ def searching_dashboard (status_login):
     print("dari produk")
     print(tabulate(data_produk,headers=['id_layanan','nama_produk','harga','jenis']))
     jeda = input("tekan enter untuk kembali")
+    helper.clear()
     dashboard(status_login)
 
 def dashboard (status_login):
@@ -50,8 +51,10 @@ def dashboard (status_login):
     if inputan == 1 :
         helper.clear()
         searching_dashboard(status_login)
+       
         
     elif inputan == 2 :
         helper.clear()
+        
       
-dashboard(dump)
+#dashboard(dump)
