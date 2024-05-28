@@ -2,6 +2,7 @@ import datetime
 import pelanggan_view as pelanggan
 import dashboard_controller as controller
 import helpers as helper
+import profile_view as profile
 from tabulate import tabulate
 
 #dump = [('Almashuda34', 'Huda', 'huda34678', 'owner')]
@@ -57,6 +58,10 @@ def dashboard (status_login):
     elif inputan == 2 :
         helper.clear()
         pelanggan.menu_pelangggan(status_login)
+
+    elif inputan == 8:
+        helper.clear()
+        profile.menu_profile(status_login)
 
         
       
