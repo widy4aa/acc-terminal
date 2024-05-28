@@ -3,6 +3,7 @@ import pelanggan_view as pelanggan
 import dashboard_controller as controller
 import helpers as helper
 import profile_view as profile
+import pengguna_view as pengguna
 from tabulate import tabulate
 
 #dump = [('Almashuda34', 'Huda', 'huda34678', 'owner')]
@@ -44,8 +45,8 @@ def dashboard (status_login):
     #menu
 
     print (f"""List Menu 
-    1.Searching      3.Pemesanan         5.Data Produk       7.Data Layanan
-    2.Data Pelanggan 4.Data Transaksi    6.Data Pengguna     8.Profile        
+    1.Searching      3.Pemesanan         5.Data Produk      7.Data Pengguna
+    2.Data Pelanggan 4.Data Transaksi    6.Data Layanan     8.Profile        
            """)
     inputan = controller.menu_dashboard_input()
     helper.clear()
@@ -58,10 +59,18 @@ def dashboard (status_login):
     elif inputan == 2 :
         helper.clear()
         pelanggan.menu_pelangggan(status_login)
+        
+    
+    elif inputan == 7 and status_login[0][3] == 'owner' :
+        helper.clear()
+        pengguna.pengguna(status_login)
 
     elif inputan == 8:
         helper.clear()
         profile.menu_profile(status_login)
+    
+    else: 
+        dashboard(status_login)
 
         
       
