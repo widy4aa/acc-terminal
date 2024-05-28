@@ -1,4 +1,5 @@
 import psycopg2
+import helpers as helper
 
 conn = psycopg2.connect(database='Acc', user='postgres', password='dio', host='localhost', port=5432)
 cur = conn.cursor()
@@ -52,3 +53,24 @@ def read_pelanggan_selection(cur,id_pelanggan):
     cur.execute(query)
     data = cur.fetchall()
     return data
+
+def update_pelanggan (cur,id_pelanggan,data_baru):
+    query = f"""
+    update pelanggan 
+    set nama_pelanggan = '{data_baru[1]}',
+        no_telp = '{data_baru[2]}'
+    where id_pelanggan = {id_pelanggan}
+    """
+    cur.execute(query)
+    conn.commit()
+    
+def update_alamat (cur,id_alamat,data_baru):
+    query = f"""
+    update alamat 
+    set jalan = '{data_baru[1]}',
+        kecamatan = '{data_baru[2]}',
+        kabupaten = '{data_baru[3]}'
+    where id_alamat = {id_alamat}
+    """
+    cur.execute(query)
+    conn.commit()

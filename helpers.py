@@ -17,7 +17,18 @@ def clear():
 def dd(data):
     print(data)
     exit()
-    
+
+
+
+
+def menu_input(count_menu):
+    menu = int(input("pilih berdasarkan nomor :"))
+    if 1 <= menu <=count_menu :
+        return menu
+    else : 
+        menu_input(count_menu)
+
+# query_general    
 def searching (cur,inputan,table,kolom):
     query =f"""
     select * 
@@ -27,3 +38,13 @@ def searching (cur,inputan,table,kolom):
     cur.execute(query)
     data = cur.fetchall()
     return data
+
+def read_selection (cur,selection,kolom,table):
+    query = f"""
+    select * from {table}
+    where {kolom} = {selection}
+    """
+    cur.execute(query)
+    data = cur.fetchall()
+    return data
+
