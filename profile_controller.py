@@ -14,15 +14,5 @@ def ganti_password(cur,username,pasword_baru):
     conn.commit()
     
 
-def list_all_users (cur) :
-    query = f"""
-        select id_pengguna,username,password,nama_role from pengguna p join role r
-        on p.id_role = r.id_role 
-        order by id_pengguna
-    """
-    cur.execute(query)
-    data = cur.fetchall()
-    return data
-
     
 

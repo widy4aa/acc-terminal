@@ -41,7 +41,7 @@ def dashboard (status_login):
     pembayaran_hari_ini = controller.metode_pembayaran_diminati(controller.cur)
     print (f"jenis pembayaran paling diminati : {pembayaran_hari_ini[0][0]} ")
     print("-------------------------------")
-
+    
     #menu
 
     print (f"""List Menu 

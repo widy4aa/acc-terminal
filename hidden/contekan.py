@@ -49,3 +49,31 @@ print(read_table(cur,'role'))
 # # read_mata_kuliah(cur)
 # # cur.close()
 # # conn.close()
+
+# # UPDATE
+# nama_mata_kuliah = input(f"Masukkan nama mata kuliah: ") or data2[1]
+# sks = input(f"Masukkan jumlah sks: ") or data2[2]
+# sks = int(sks)
+# semester_id = input(f"Masukkan semester: ") or data2[3]
+
+# query_update = f"UPDATE mata_kuliah SET nama_mata_kuliah = '{nama_mata_kuliah}', sks = {sks}, semester_id = {semester_id} WHERE id_mata_kuliah = {id_mata_kuliah}"
+
+# # -- Manipulasi string
+# # cur.execute(query_update, (nama_mata_kuliah, sks, semester_id, id_mata_kuliah))
+
+# # -- Fstring
+# cur.execute(query_update)
+
+# conn.commit()
+# print(f"total baris yang diubah: {cur.rowcount}")
+
+# cur.close()
+# conn.close()
+
+read_mata_kuliah(cur)
+id_mata_kuliah = input('Masukkan id mata kuliah yang ingin dihapus: ')
+query_delete = f"DELETE FROM mata_kuliah WHERE id_mata_kuliah = {id_mata_kuliah}"
+cur.execute(query_delete)
+print(f"total baris yang dihapus: {cur.rowcount}")
+conn.commit()
+

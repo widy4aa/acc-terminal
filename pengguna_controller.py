@@ -13,3 +13,13 @@ def list_all_users(cur) :
     cur.execute(query)
     data = cur.fetchall()
     return data
+
+def delete_pengguna(cur,id_pengguna):
+    query = f"""
+        delete from pengguna
+        where id_pengguna = {id_pengguna}
+    """
+    cur.execute(query)
+    conn.commit()
+
+
