@@ -1,7 +1,5 @@
 import helpers as helper
 import profile_controller as controller
-import login_view as login 
-from tabulate import tabulate
 
 # dump = [('Almashuda34', 'Huda', 'huda', 'owner')]
 
