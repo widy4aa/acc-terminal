@@ -4,6 +4,7 @@ import dashboard_controller as controller
 import helpers as helper
 import profile_view as profile
 import pengguna_view as pengguna
+import produk_view as produk
 from tabulate import tabulate
 
 #dump = [('Almashuda34', 'Huda', 'huda34678', 'owner')]
@@ -60,6 +61,10 @@ def dashboard (status_login):
         helper.clear()
         pelanggan.menu_pelangggan(status_login)
         
+    elif inputan == 5 and status_login[0][3] == 'owner' :
+        helper.clear()
+        produk.menu_produk(status_login)
+        
     
     elif inputan == 7 and status_login[0][3] == 'owner' :
         helper.clear()
@@ -73,5 +78,3 @@ def dashboard (status_login):
         dashboard(status_login)
 
         
-      
-#dashboard(dump)

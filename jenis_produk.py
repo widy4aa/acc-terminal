@@ -1,9 +1,8 @@
 import helpers as helper
 import jenis_produk_controller as controller
-import dashboard_view as dashboard
+import produk_view as produk
 from tabulate import tabulate
 
-dump = [('Almashuda34', 'Huda', 'huda34678', 'owner')]
 
 def menu_jenis(status_login):
     print("--------------------------")
@@ -38,11 +37,8 @@ def menu_jenis(status_login):
         
     elif menu == 4 :
         helper.clear()
-        dashboard.dashboard(status_login)
-    else :
-        menu_jenis(status_login)
+        produk.menu_produk(status_login)
 
-menu_jenis(dump)
-        
+       
 
     

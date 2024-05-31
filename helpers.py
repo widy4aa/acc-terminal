@@ -2,7 +2,9 @@ import os
 import psycopg2
 
 conn = psycopg2.connect(database='Acc', user='postgres', password='dio', host='localhost', port=5432)
+dump = [('Almashuda34', 'Huda', 'huda34678', 'owner')]
 cur = conn.cursor()
+
 
 # fungsi untuk clear console untuk bisa berfungsi di 2 tipe Sistem operasi
 def clear():

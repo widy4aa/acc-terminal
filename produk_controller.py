@@ -1,7 +1,7 @@
 import psycopg2
 import helpers as helper
 
-conn = psycopg2.connect(database='Acc', user='postgres', password='dio', host='localhost', port=5432)
+conn = helper.conn
 cur = conn.cursor()
 
 
@@ -38,9 +38,9 @@ def add_produk(cur,produk_baru):
 def edit_produk(cur,id_produk,produk_baru):
     query = f"""
     update produk 
-    set nama_produk = '{produk_baru[0]}'
-        harga = '{produk_baru[1]}'
-        id_jenis = {produk_baru[2]}
+    set nama_produk = '{produk_baru[0]}',
+        harga = {produk_baru[1]},
+        id_jenis_produk = {produk_baru[2]}
     where id_produk = {id_produk}
     """
     cur.execute(query)
@@ -53,3 +53,5 @@ def delete_produk(cur,id_produk):
     """
     cur.execute(query)
     conn.commit()
+    
+
