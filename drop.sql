@@ -1,0 +1,12 @@
+drop table detail_transaksi_layanan;
+drop table detail_transaksi_produk;
+drop table pc;
+drop table layanan;
+drop table produk;
+drop table jenis_produk;
+drop table transaksi;
+drop table pengguna;
+drop table role;
+drop table metode_pembayaran;
+drop table pelanggan;
+drop table alamat;
