@@ -8,7 +8,7 @@ import layanan_controller as la_controller
 import pc_controller as pc_controller
 import dashboard_view as dashboard
 
-dump_detail =[(1, 'Almashuda34', 'Huda', 'huda34678', 1), (1, 'Widya', '085230369011', 'Jl. Merdeka No. 123 Wuluhan Jember'), [[1, ' Asus Rog Strix Nvidia RTX 3060 TI', 16000000, 'GPU', '2', 32000000], [2, 'Intel i3 1200f', 1200000, 'CPU', '2', 2400000], [3, 'Amd Ryzen 5 5600G', 120000, 'CPU', '4', 480000]], [[1, 'Install ulang Windwos', 750000, 'Asus X441UV'], [3, 'Storage Recovery', 250000, 'Asus X441UV']], 'skjdasd', 'cash', 35880000]
+#dump_detail =[(1, 'Almashuda34', 'Huda', 'huda34678', 1), (1, 'Widya', '085230369011', 'Jl. Merdeka No. 123 Wuluhan Jember'), [[1, ' Asus Rog Strix Nvidia RTX 3060 TI', 16000000, 'GPU', '2', 32000000], [2, 'Intel i3 1200f', 1200000, 'CPU', '2', 2400000], [3, 'Amd Ryzen 5 5600G', 120000, 'CPU', '4', 480000]], [[1, 'Install ulang Windwos', 750000, 'Asus X441UV'], [3, 'Storage Recovery', 250000, 'Asus X441UV']], 'skjdasd', 'cash', 35880000]
 
 def detail(data):
     print (f"""
@@ -87,9 +87,5 @@ def menu_pemesanan(status_login):
     helper.clear()
     dashboard.dashboard(status_login)    
     
-    
-
-    
-menu_pemesanan(helper.dump)   
 
     

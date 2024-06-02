@@ -6,6 +6,8 @@ import profile_view as profile
 import pengguna_view as pengguna
 import produk_view as produk
 import transaksi_view as transaksi
+import pemesanan_view as pemesanan
+import layanan_view as layanan
 from tabulate import tabulate
 
 #dump = [('Almashuda34', 'Huda', 'huda34678', 'owner')]
@@ -62,14 +64,24 @@ def dashboard (status_login):
         helper.clear()
         pelanggan.menu_pelangggan(status_login)
         
-    elif inputan == 5 and status_login[0][3] == 'owner' :
+    elif inputan == 3 :
         helper.clear()
-        produk.menu_produk(status_login)
-       
+        pemesanan.menu_pemesanan(status_login)
+
     elif inputan == 4 and status_login[0][3] == 'owner' :
         helper.clear()
         transaksi.transaksi(status_login)
+
+    elif inputan == 5 and status_login[0][3] == 'owner' :
+        helper.clear()
+        produk.menu_produk(status_login)
+        
     
+    elif inputan == 6 and status_login[0][3] == 'owner' :
+        helper.clear()
+        layanan.menu_layanan(status_login)
+       
+
     elif inputan == 7 and status_login[0][3] == 'owner' :
         helper.clear()
         pengguna.pengguna(status_login)

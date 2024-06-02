@@ -1,10 +1,9 @@
 import helpers as helper 
 import transaksi_controller as controller
+import dashboard_view as dashboard
 from tabulate import tabulate
 
-data_trx = controller.get_all_trx(helper.cur)
-data_trx_now = controller.get_all_trx_now(helper.cur)
-data_trx_month = controller.get_all_trx_month(helper.cur)
+
 
 
 def detail_trx (data_detail,harga):
@@ -29,6 +28,10 @@ Total Bayar : {harga}
     """)   
 
 def transaksi(status_login):
+    data_trx = controller.get_all_trx(helper.cur)
+    data_trx_now = controller.get_all_trx_now(helper.cur)
+    data_trx_month = controller.get_all_trx_month(helper.cur)
+    
     if data_trx_now != []  :
         print("Data Transaksi Hari ini -----------------------")
         print(tabulate(data_trx_now,headers=['id transaksi','nama pelanggan','pembuat','metode pembayaran','tanggal dibuat','keterangan']))
@@ -60,5 +63,5 @@ def transaksi(status_login):
         transaksi(status_login)
     elif menu == 4 :
         helper.clear()
-        transaksi(status_login)
+        dashboard.dashboard(status_login)
     

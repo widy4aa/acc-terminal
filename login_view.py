@@ -11,8 +11,8 @@ def login ():
     print("-------------------------------")
     while True:
         print("Login Masukkan username dan password yang benar")
-        username=input("username :") or 'Almashuda34'
-        password=input('password :') or 'huda34678'
+        username=input("username :") 
+        password=input('password :') 
         status_login = controller.login(username,password)
         if status_login:
             print('berhasil login')

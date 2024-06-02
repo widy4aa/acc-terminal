@@ -10,8 +10,14 @@ def read_jumlah_data(cur,table):
     return data
 
 def read_jumlah_uang_masuk(cur):
-    query1 = f"select sum(harga) from transaksi t join detail_transaksi_produk dt on dt.id_transaksi = t.id_transaksi join produk p on p.id_produk = dt.id_produk WHERE DATE(tgl_dibuat) = DATE(NOW());" 
-    query2 = f"select sum(harga) from transaksi t join detail_transaksi_layanan dt on dt.id_transaksi = t.id_transaksi join layanan l on l.id_layanan = dt.id_layanan WHERE DATE(tgl_dibuat) = DATE(NOW());" 
+    query1 = f"""select sum(harga*dt.kuantitas) from transaksi t 
+                join detail_transaksi_produk dt on dt.id_transaksi = t.id_transaksi 
+                join produk p on p.id_produk = dt.id_produk WHERE DATE(tgl_dibuat) = DATE(NOW());""" 
+    
+    query2 = f"""select sum(harga) from transaksi t 
+                join detail_transaksi_layanan dt on dt.id_transaksi = t.id_transaksi 
+                join layanan l on l.id_layanan = dt.id_layanan WHERE DATE(tgl_dibuat) = DATE(NOW());""" 
+    
     cur.execute(query1)
     data1 = cur.fetchall()
     cur.execute(query2)
@@ -30,8 +36,14 @@ def read_jumlah_uang_masuk(cur):
     return uang
     
 def produk_layanan_diminati (cur): 
-    query1 = f"SELECT p.nama_produk, COUNT(*) as total_transaksi FROM transaksi t JOIN detail_transaksi_produk dt ON dt.id_transaksi = t.id_transaksi JOIN produk p ON p.id_produk = dt.id_produk WHERE DATE(tgl_dibuat) = DATE(NOW()) GROUP BY p.nama_produk ORDER BY total_transaksi DESC LIMIT 1;" 
-    query2 = f"SELECT l.nama_layanan, COUNT(*)  as total_transaksi FROM transaksi t JOIN detail_transaksi_layanan dt ON dt.id_transaksi = t.id_transaksi JOIN layanan l ON l.id_layanan = dt.id_layanan WHERE DATE(tgl_dibuat) = DATE(NOW()) GROUP BY l.nama_layanan ORDER BY total_transaksi DESC LIMIT 1;" 
+    query1 = f"""SELECT p.nama_produk, COUNT(*) as total_transaksi FROM transaksi t 
+                JOIN detail_transaksi_produk dt ON dt.id_transaksi = t.id_transaksi 
+                JOIN produk p ON p.id_produk = dt.id_produk WHERE DATE(tgl_dibuat) = DATE(NOW()) 
+                GROUP BY p.nama_produk ORDER BY total_transaksi DESC LIMIT 1;""" 
+    query2 = f"""SELECT l.nama_layanan, COUNT(*)  as total_transaksi FROM transaksi t 
+                JOIN detail_transaksi_layanan dt ON dt.id_transaksi = t.id_transaksi 
+                JOIN layanan l ON l.id_layanan = dt.id_layanan WHERE DATE(tgl_dibuat) = DATE(NOW()) 
+                GROUP BY l.nama_layanan ORDER BY total_transaksi DESC LIMIT 1;""" 
     cur.execute(query1)
     data1 = cur.fetchall()
     cur.execute(query2)
@@ -58,7 +70,9 @@ def produk_layanan_diminati (cur):
     return diminati
 
 def metode_pembayaran_diminati(cur):
-    query = f" select mp.nama_metode_pembayaran from transaksi t join metode_pembayaran mp on mp.id_metode_pembayaran = t.id_metode_pembayaran group by mp.nama_metode_pembayaran order by mp.nama_metode_pembayaran asc limit 1;"
+    query = f""" select mp.nama_metode_pembayaran from transaksi t 
+                join metode_pembayaran mp on mp.id_metode_pembayaran = t.id_metode_pembayaran 
+                group by mp.nama_metode_pembayaran order by mp.nama_metode_pembayaran asc limit 1;"""
     cur.execute(query)
     data = cur.fetchall()
     return data
